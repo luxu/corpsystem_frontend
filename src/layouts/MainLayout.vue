@@ -68,13 +68,13 @@ const linksList = [
     title: 'Cliente',
     caption: '',
     icon: 'mdi-calculator',
-    routeName: 'gasto'
+    routeName: 'cliente'
   },
   {
     title: 'Produto',
     caption: '',
     icon: 'mdi-calculator',
-    routeName: 'gasto'
+    routeName: 'produto'
   },
   {
     title: 'Vendedor',

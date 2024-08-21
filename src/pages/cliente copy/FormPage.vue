@@ -2,9 +2,9 @@
   <q-page padding>
     <q-form class="col-md-7 col-xs-12 col-sm-12 q-gutter-y-md" @submit.prevent="handlerSubmit">
       <q-input
-        label="Descrição"
+        label="Nome"
         outlined
-        v-model="form.descricao"
+        v-model="form.nome"
         :rules="requiredRules"
       />
       <div class="q-pa-md q-gutter-sm">
@@ -21,6 +21,7 @@
           label="Cancelar"
           type="reset"
           class="full-width"
+          :to="{name: 'cliente'}"
         />
       </div>
     </q-form>
@@ -38,7 +39,7 @@ export default defineComponent({
   name: 'FormPage',
   setup() {
     const form = ref({
-      descricao: '',
+      nome: '',
     });
     const router = useRouter();
     const route = useRoute();
@@ -48,9 +49,9 @@ export default defineComponent({
     ];
     const isUpdate = computed(() => route.params.id);
 
-    const handleGetCategoria = async (id) => {
+    const handleGetCliente = async (id) => {
       try {
-        await api.get(`api/v1/categorias/${id}/`)
+        await api.get(`api/v1/clientes/${id}/`)
         .then(function (response) {
           form.value = response.data[0]
         })
@@ -65,13 +66,13 @@ export default defineComponent({
     const handlerSubmit = async () => {
       try {
         if (isUpdate.value) {
-          await api.put(`/api/v1/categoria/${isUpdate.value}/`, form.value);
+          await api.put(`/api/v1/cliente/${isUpdate.value}/`, form.value);
           notifySuccess('Update Successfully');
         } else {
-          await api.post('/api/v1/categoria/', form.value);
+          await api.post('/api/v1/cliente/', form.value);
           notifySuccess('Saved Successfully');
         }
-        router.push({ name: 'categoria' });
+        router.push({ name: 'cliente' });
       } catch (error) {
         notifyError(error.message);
       }
@@ -79,7 +80,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (isUpdate.value) {
-        handleGetCategoria(isUpdate.value);
+        handleGetCliente(isUpdate.value);
       }
     });
 

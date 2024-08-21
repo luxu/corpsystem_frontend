@@ -2,9 +2,9 @@
   <q-page padding>
 
     <q-table
-        :rows="categorias"
-        :columns="columnsCategorias"
-        row-key="categoria"
+        :rows="clientes"
+        :columns="columnsClientes"
+        row-key="cliente"
         :loading="loading"
         :dense="$q.screen.lt.md"
         flat bordered
@@ -23,7 +23,7 @@
               color="negative"
               dense
               size="sm"
-              @click="handleRemoveCategoria(props.row)"
+              @click="handleRemoveCliente(props.row)"
               />
           </q-td>
         </template>
@@ -36,7 +36,7 @@
         fab
         icon="mdi-plus"
         color="primary"
-        :to="{ name: 'form-categoria' }"
+        :to="{ name: 'form-cliente' }"
       />
     </q-page-sticky>
   </q-page>
@@ -47,27 +47,27 @@
 import { api } from 'boot/axios'
 import { useRouter } from 'vue-router'
 import { defineComponent, onMounted, ref, computed } from 'vue'
-import { columnsCategorias, initialPagination } from './table'
+import { columnsClientes, initialPagination } from './table'
 import useNotify from 'src/composables/UseNotify'
 import { useQuasar } from 'quasar'
 
 
 export default defineComponent({
-  name: 'PageCategoria',
+  name: 'PageCliente',
   setup () {
-    const categorias = ref([])
+    const clientes = ref([])
     const router = useRouter()
     const loading = ref(true)
     const { notifySuccess, notifyError } = useNotify();
     const $q = useQuasar()
 
 
-    const handleListCategorias = () => {
-      const url = 'api/v1/categorias'
+    const handleListClientes = () => {
+      const url = 'api/v1/clientes'
       loading.value = true
       api.get(url)
         .then(function (response) {
-          categorias.value = response.data
+          clientes.value = response.data
           loading.value = false
         })
         .catch(function (error) {
@@ -76,21 +76,21 @@ export default defineComponent({
     }
 
 
-    const handleEdit = (categoria) => {
-      router.push({ name: 'form-categoria', params: { id: categoria.id } })
+    const handleEdit = (cliente) => {
+      router.push({ name: 'form-cliente', params: { id: cliente.id } })
     }
 
-    const handleRemoveCategoria = async (categoria) => {
+    const handleRemoveCliente = async (cliente) => {
       try {
         $q.dialog({
           title: 'Confirmar',
-          message: `Você realmente quer excluir?: ${categoria.id} ?`,
+          message: `Você realmente quer excluir?: ${cliente.id} ?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {
-          await api.delete(`api/v1/categoria/deletar/${categoria.id}/`)
+          await api.delete(`api/v1/cliente/deletar_cliente/${cliente.id}/`)
           notifySuccess('Registro deletado com successo!')
-          handleListCategorias()
+          handleListClientes()
         })
       } catch (error) {
         notifyError(error.message)
@@ -99,15 +99,15 @@ export default defineComponent({
 
 
     onMounted(()=>{
-      handleListCategorias()
+      handleListClientes()
     })
 
     return {
       loading,
-      categorias,
+      clientes,
       handleEdit,
-      handleRemoveCategoria,
-      columnsCategorias,
+      handleRemoveCliente,
+      columnsClientes,
       initialPagination,
       pagesNumber: computed(() => Math.ceil(users.value.length / initialPagination.value.rowsPerPage))
     }
