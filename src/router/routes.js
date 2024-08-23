@@ -16,6 +16,7 @@ const routes = [
       { path: 'form-venda/:id?', name: 'form-venda', component: () => import('pages/venda/FormPage.vue')},
       { path: 'itensVenda', name: 'itensVenda', component: () => import('pages/itensVenda/ListPage.vue')},
       { path: 'form-itensVenda/:id?', name: 'form-itensVenda', component: () => import('pages/itensVenda/FormPage.vue')},
+      { path: 'relatorio', name: 'relatorio', component: () => import('pages/RelatorioPage.vue')},
     ]
   },
 

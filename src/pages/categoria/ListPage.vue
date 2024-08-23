@@ -63,7 +63,7 @@ export default defineComponent({
 
 
     const handleListCategorias = () => {
-      const url = 'api/v1/categorias'
+      const url = 'api/v1/categorias/'
       loading.value = true
       api.get(url)
         .then(function (response) {

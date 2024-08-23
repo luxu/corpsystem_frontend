@@ -49,7 +49,6 @@ import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-import useAuthUser from '../composables/UseAuthUser'
 
 const linksList = [
   {
@@ -61,38 +60,38 @@ const linksList = [
   {
     title: 'Categoria',
     caption: '',
-    icon: 'mdi-calculator',
+    icon: 'mdi-alien-outline',
     routeName: 'categoria'
   },
   {
     title: 'Cliente',
     caption: '',
-    icon: 'mdi-calculator',
+    icon: 'mdi-alien-outline',
     routeName: 'cliente'
   },
   {
     title: 'Produto',
     caption: '',
-    icon: 'mdi-calculator',
+    icon: 'mdi-alien-outline',
     routeName: 'produto'
   },
   {
     title: 'Vendedor',
     caption: '',
-    icon: 'mdi-calculator',
+    icon: 'mdi-alien-outline',
     routeName: 'vendedor'
   },
   {
     title: 'Venda',
     caption: '',
-    icon: 'mdi-calculator',
+    icon: 'mdi-alien-outline',
     routeName: 'venda'
   },
   {
-    title: 'ItensVendas',
+    title: 'Relatório de Vendas',
     caption: '',
-    icon: 'mdi-calculator',
-    routeName: 'itensVenda'
+    icon: 'mdi-printer',
+    routeName: 'relatorio'
   },
 ]
 
@@ -110,27 +109,12 @@ export default defineComponent({
 
     const router = useRouter()
 
-    const { logout } = useAuthUser()
-
-    const handleLogout = async () => {
-      $q.dialog({
-        title: 'Logout',
-        message: 'Do you really want to leave ?',
-        cancel: true,
-        persistent: true
-      }).onOk(async () => {
-        await logout()
-        router.replace({ name: 'login' })
-      })
-    }
-
     return {
       linksList,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
-      handleLogout
     }
   }
 })
