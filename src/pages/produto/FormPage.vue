@@ -88,7 +88,7 @@ export default defineComponent({
     }
 
     const handleListCategorias = async () => {
-      const url = 'api/v1/categorias'
+      const url = 'api/v1/categorias/'
       try {
         await api.get(url)
           .then((response) => {

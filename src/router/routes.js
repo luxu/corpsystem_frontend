@@ -3,7 +3,7 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', name: 'login', component: () => import('pages/IndexPage.vue')},
+      { path: '', name:"index", component: () => import('pages/IndexPage.vue')},
       { path: 'categoria', name: 'categoria', component: () => import('pages/categoria/ListPage.vue')},
       { path: 'form-categoria/:id?', name: 'form-categoria', component: () => import('pages/categoria/FormPage.vue')},
       { path: 'cliente', name: 'cliente', component: () => import('pages/cliente/ListPage.vue')},

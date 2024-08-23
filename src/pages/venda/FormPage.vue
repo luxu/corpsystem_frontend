@@ -27,7 +27,7 @@
       />
       <q-input
         label="Data da Venda"
-        v-model="form.data"
+        v-model="form.data_venda"
         type="date"
         outlined
       />
@@ -53,18 +53,6 @@
                 option-value="id"
                 outlined
                 @input="updatePreco(index)"
-              />
-            </div>
-          </div>
-          {{ produtoSelecionado }}
-          <div class="q-pa-md">
-            <div class="q-gutter-x-md">
-              <q-input
-                label="Preço"
-                v-model="item.preco"
-                outlined
-                readonly
-                prefix="R$"
               />
             </div>
           </div>
@@ -117,7 +105,7 @@ export default defineComponent({
     const form = ref({
         cliente: '',
         vendedor: '',
-        data: '2024-08-22',
+        data_venda: '2024-08-22',
         itens: [
           {
             produto: '',
@@ -185,12 +173,12 @@ export default defineComponent({
     }
 
     const submitVenda = async () => {
-      const url = '/api/v1/vendas'
+      const url = '/api/v1/venda/'
       console.log(form.value)
       try {
-        // const response = await api.post(url, form.value)
+        const response = await api.post(url, form.value)
         notifySuccess('Venda criada com sucesso!')
-        // resetForm()
+        resetForm()
       } catch (error) {
         notifyError('Erro ao criar venda.')
       }
@@ -199,7 +187,7 @@ export default defineComponent({
     const resetForm = () => {
       form.value = {
         cliente: '',
-        data: '',
+        data_venda: '',
         itens: [
           {
             produto: '',

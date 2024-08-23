@@ -55,7 +55,7 @@ const linksList = [
     title: 'Inicio',
     caption: '',
     icon: 'mdi-home',
-    routeName: 'me'
+    routeName: 'index'
   },
   {
     title: 'Categoria',
