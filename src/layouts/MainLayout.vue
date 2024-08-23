@@ -80,19 +80,19 @@ const linksList = [
     title: 'Vendedor',
     caption: '',
     icon: 'mdi-calculator',
-    routeName: 'gasto'
+    routeName: 'vendedor'
   },
   {
     title: 'Venda',
     caption: '',
     icon: 'mdi-calculator',
-    routeName: 'gasto'
+    routeName: 'venda'
   },
   {
     title: 'ItensVendas',
     caption: '',
     icon: 'mdi-calculator',
-    routeName: 'gasto'
+    routeName: 'itensVenda'
   },
 ]
 
