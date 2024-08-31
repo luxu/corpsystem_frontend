@@ -22,4 +22,4 @@ COPY . ./
 RUN npm run build
 ENV SHELL=/bin/bash LANG=en_US.UTF-8
 COPY . ./
-EXPOSE 3000
+EXPOSE 9000
